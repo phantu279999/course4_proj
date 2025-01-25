@@ -41,7 +41,9 @@ class Dev(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'movies',
-        'gh'
+        'gh',
+
+        'django_celery_results'
     ]
 
     MIDDLEWARE = [
@@ -151,3 +153,6 @@ class Dev(Configuration):
             "level": "DEBUG",
         },
     }
+
+    CELERY_RESULT_BACKEND = "django-db"
+    CELERY_BROKER_URL = "redis://localhost:6379/0"
