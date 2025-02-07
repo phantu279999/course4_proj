@@ -11,7 +11,9 @@ from movies.tasks import search_and_save
 
 
 def search(request):
-    search_term = request.GET["search_term"]
+    search_term = request.GET.get('search_term', '')
+    if not search_term:
+        return redirect('index')
     res = search_and_save.delay(search_term)
     try:
         res.get(timeout=2)
